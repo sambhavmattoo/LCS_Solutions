@@ -90,7 +90,7 @@ for i in range(Program_Iterations):
     Y = ''.join(random.choices(string.ascii_uppercase, k = randint(1, 1000)))
     Start_Time = time.time()
     Suffix_Tree = Tree({'X': X, 'Y': Y})
-    Ans = Suffix_Tree_1.common_substrings()
+    Ans = Suffix_Tree.common_substrings()
     Average_Runtime = Average_Runtime + time.time() - Start_Time
 Average_Runtime = Average_Runtime / Program_Iterations
 print("The runtime for", Program_Iterations, "iterations was", Average_Runtime, "seconds on average.")
@@ -99,7 +99,7 @@ for i in range(Program_Iterations):
     Y = ''.join(random.choices(string.ascii_uppercase, k = randint(1, 1000)))
     tracemalloc.start()
     Suffix_Tree = Tree({'X': X, 'Y': Y})
-    Ans = Suffix_Tree_1.common_substrings()
+    Ans = Suffix_Tree.common_substrings()
     Current_Memory_Usage, Peak_Memory_Usage = tracemalloc.get_traced_memory()
     Average_Peak_Memory_Usage = Average_Peak_Memory_Usage + Peak_Memory_Usage
     tracemalloc.stop()

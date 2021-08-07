@@ -29,7 +29,7 @@ The runtime for 1000 iterations was 0.027146029472351074 seconds on average.
 The peak memory usage for 1000 iterations was 230.4  bytes on average.
 
 Next, I tried to use two libraries, one from here: https://github.com/cceh/suffix-tree and the other from here: https://github.com/ptrus/suffix-trees
-Both use suffix trees to find LCS and have their own functions for computing it. Oddly, I found no order of magnitude difference in their speed in comparison to the last of the previous DP solutions, in scope of the present problem. The time and speed measuremnts were done the same way as in the last file. I observed the first library function to be slightly slower and the last one to be slightly faster than the DP, with much larger memory usage (~10^5 Bytes for the first and ~10^6 for the second). Here is a sample output:
+Both use suffix trees to find LCS and have their own functions for computing it. Oddly, I found no order of magnitude difference in their speed in comparison to the last of the previous DP solutions, in scope of the present problem. The time and speed measurements were done the same way as in the last file. I observed the first library function to be slightly slower and the last one to be slightly faster than the DP, with much larger memory usage (~10^5 Bytes for the first and ~10^6 for the second). Here is a sample output:
 
 The LCS DP Solution with only one extra storage container.
 

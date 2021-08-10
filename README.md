@@ -1,6 +1,10 @@
 # LCS_Solutions
 Trying out different ways to solve the LCS problem.
 
+Before I begin, my system parameters are: I'm running an Intel Core i7-8550U CPU at 1.80GHz, 1992 Mhz, 4 Core(s), 8 Logical Processor(s).
+
+The next two iterations are on the Python 3.9 interpreter running on Windows 10.
+
 In the file LCS_DP_Solutions.py I tried some initial DP solutions to solve the LCS problem. I wrote 4 functions.
 
   1.) The first one was completely based off the Wikipedia DP solution for this problem, found at: https://en.wikipedia.org/wiki/Longest_common_substring_problem#Dynamic_programming I just added one line of code to record the first time the LCS appears in the first string passed. It outputs the size of the LCS and that index.
@@ -45,3 +49,15 @@ The second LCS Suffix Tree Library function
 
 The runtime for 1000 iterations was 0.011165523529052734 seconds on average.
 The peak memory usage for 1000 iterations was 6050373.42  bytes on average.
+
+The next implementation is run on Windows Subsystem for Linux, the Ubuntu 20.04 LTS version. 
+
+I did a quick implementation of the SA + LCP algorithm to solve the LCS problem. Provided we know the Suffix array and the LCP, the idea to find the LCS is to go down both SA and LCP looking for two "adjacent" suffixes that are formed by "cutting" the concatenated strings with sentinel letters in between them, one in the first string and the second one in the second string. Then, the LCS is the maximal value of the LCP array at such points.
+
+I implemented both using the SA and LCP functions in the SDSL Library, and the results are in the adjoining HTML file. I chose using integer bit compressed vectors as the data structures to caluclate for the first pass, as it seemed that by reading the background, they use up more space but are significantly faster to use than the WT or Psi function based alternatives. I found that for the first pass, and for a very small problem, the time taken for > 0.07 secs with peak memory usage being 5 x 10^6 B, which is far in excess of the simplest DP solution on both counts. The memory and time overheads are seemingly both caused by the function to calculate the LCP array, which should be a byproduct of the SA array calculation. This was done using SDSL's own memory management software.
+
+Here are some ideas to try to improve this:
+  -> Write a combined function to calculate SA with LCP arrays too.
+  -> Try if using the other DS available in the library show any performance improvements.
+  
+One of the things I notice too is that the LCP construction seems to happen followed by bit-compression; this wastes time, as we are calculating the LCP using up a lot of space, and then wasting time in compressing the LCP array.
